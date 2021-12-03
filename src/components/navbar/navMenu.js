@@ -11,9 +11,9 @@ const NavMenu = ({ setIsNavMenuOpen }) => {
         color="white"
       ></GrClose>
       <ul className="flex flex-col gap-8 mt-16">
-        <NavMenuItem></NavMenuItem>
-        <NavMenuItem></NavMenuItem>
-        <NavMenuItem></NavMenuItem>
+        <NavMenuItem>Home</NavMenuItem>
+        <NavMenuItem>Add Poll</NavMenuItem>
+        <NavMenuItem>LeaderBoard</NavMenuItem>
       </ul>
     </div>
   );

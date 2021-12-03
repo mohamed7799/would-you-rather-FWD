@@ -11,9 +11,9 @@ const Navbar = ({ setIsNavMenuOpen }) => {
         className="sm:hidden"
       ></FaBars>
       <ul className="hidden sm:flex gap-8">
-        <NavbarItem></NavbarItem>
-        <NavbarItem></NavbarItem>
-        <NavbarItem></NavbarItem>
+        <NavbarItem>Home</NavbarItem>
+        <NavbarItem>Add Poll</NavbarItem>
+        <NavbarItem>LeaderBoard</NavbarItem>
       </ul>
       <div className="flex items-center gap-2">
         <h3 className="text-purple-400">UserName</h3>
