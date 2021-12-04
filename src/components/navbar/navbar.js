@@ -12,7 +12,7 @@ const Navbar = ({ setIsNavMenuOpen }) => {
       ></FaBars>
       <ul className="hidden sm:flex gap-8">
         <NavbarItem>Home</NavbarItem>
-        <NavbarItem>Add Poll</NavbarItem>
+        <NavbarItem>Add</NavbarItem>
         <NavbarItem>LeaderBoard</NavbarItem>
       </ul>
       <div className="flex items-center gap-2">

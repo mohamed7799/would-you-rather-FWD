@@ -11,9 +11,11 @@ const NavMenu = ({ setIsNavMenuOpen }) => {
         color="white"
       ></GrClose>
       <ul className="flex flex-col gap-8 mt-16">
-        <NavMenuItem>Home</NavMenuItem>
-        <NavMenuItem>Add Poll</NavMenuItem>
-        <NavMenuItem>LeaderBoard</NavMenuItem>
+        <NavMenuItem setIsNavMenuOpen={setIsNavMenuOpen}>Home</NavMenuItem>
+        <NavMenuItem setIsNavMenuOpen={setIsNavMenuOpen}>Add</NavMenuItem>
+        <NavMenuItem setIsNavMenuOpen={setIsNavMenuOpen}>
+          LeaderBoard
+        </NavMenuItem>
       </ul>
     </div>
   );

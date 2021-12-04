@@ -5,6 +5,7 @@ import Navbar from "./components/navbar/navbar";
 import NavMenu from "./components/navbar/navMenu";
 import { Routes, Route } from "react-router-dom";
 import AddPoll from "./components/addPoll";
+import LeaderBoard from "./components/leaderBoard/leaderBoard";
 const App = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
 
@@ -34,6 +35,18 @@ const App = () => {
                 <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
               )}
               <AddPoll></AddPoll>
+            </>
+          }
+        ></Route>
+        <Route
+          path="/LeaderBoard"
+          element={
+            <>
+              <Navbar setIsNavMenuOpen={setIsNavMenuOpen}></Navbar>
+              {isNavMenuOpen && (
+                <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
+              )}
+              <LeaderBoard></LeaderBoard>
             </>
           }
         ></Route>
