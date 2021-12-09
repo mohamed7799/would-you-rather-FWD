@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card {
+    @apply mx-auto shadow-lg rounded-md border py-2 px-4;
+  }
+
+  /*welcome component*/
+  .welcome-btn {
+    @apply bg-purple-400 text-white py-2 rounded-lg font-bold capitalize text-base;
+  }
+  .welcome-input {
+    @apply border rounded-lg p-2 border-purple-400 focus:outline-none text-purple-600 font-bold capitalize;
+  }
+
+  /*addPoll component*/
+  .addPoll-input {
+    @apply border border-purple-400 p-2 rounded-md w-full focus:outline-none;
+  }
+}

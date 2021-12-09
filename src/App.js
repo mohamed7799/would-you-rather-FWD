@@ -6,6 +6,7 @@ import NavMenu from "./components/navbar/navMenu";
 import { Routes, Route } from "react-router-dom";
 import AddPoll from "./components/addPoll";
 import LeaderBoard from "./components/leaderBoard/leaderBoard";
+import DetailedPoll from "./components/detailedPoll/detailedPoll";
 const App = () => {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
 
@@ -18,7 +19,10 @@ const App = () => {
           path="/home"
           element={
             <>
-              <Navbar setIsNavMenuOpen={setIsNavMenuOpen}></Navbar>
+              <Navbar
+                selectedTab="Home"
+                setIsNavMenuOpen={setIsNavMenuOpen}
+              ></Navbar>
               {isNavMenuOpen && (
                 <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
               )}
@@ -30,7 +34,10 @@ const App = () => {
           path="/add"
           element={
             <>
-              <Navbar setIsNavMenuOpen={setIsNavMenuOpen}></Navbar>
+              <Navbar
+                selectedTab="Add"
+                setIsNavMenuOpen={setIsNavMenuOpen}
+              ></Navbar>
               {isNavMenuOpen && (
                 <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
               )}
@@ -42,11 +49,29 @@ const App = () => {
           path="/LeaderBoard"
           element={
             <>
-              <Navbar setIsNavMenuOpen={setIsNavMenuOpen}></Navbar>
+              <Navbar
+                selectedTab="LeaderBoard"
+                setIsNavMenuOpen={setIsNavMenuOpen}
+              ></Navbar>
               {isNavMenuOpen && (
                 <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
               )}
               <LeaderBoard></LeaderBoard>
+            </>
+          }
+        ></Route>
+        <Route
+          path="/questions"
+          element={
+            <>
+              <Navbar
+                selectedTab="home"
+                setIsNavMenuOpen={setIsNavMenuOpen}
+              ></Navbar>
+              {isNavMenuOpen && (
+                <NavMenu setIsNavMenuOpen={setIsNavMenuOpen}></NavMenu>
+              )}
+              <DetailedPoll></DetailedPoll>
             </>
           }
         ></Route>

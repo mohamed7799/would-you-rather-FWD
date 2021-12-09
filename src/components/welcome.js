@@ -9,19 +9,14 @@ const Welcome = () => {
           className="flex flex-col gap-4"
           onSubmit={(e) => e.preventDefault()}
         >
-          <select
-            className="border rounded-lg p-2 border-purple-400 focus:outline-none text-purple-600 font-bold capitalize"
-            value="select user"
-          >
+          <select className="welcome-input" value="select user">
             <option value="user 1">user 1</option>
             <option value="user 2">user 2</option>
             <option value="user 3">user 3</option>
             <option value="select user">select user</option>
           </select>
 
-          <button className="bg-purple-400 text-white py-2 rounded-lg font-bold capitalize text-base">
-            log in
-          </button>
+          <button className="welcome-btn">log in</button>
         </form>
         <hr className="my-4 h-1 rounded-full bg-gray-400 opacity-40" />
         <form
@@ -30,10 +25,10 @@ const Welcome = () => {
         >
           <input
             placeholder="Enter your name"
-            className="border rounded-lg p-2 border-purple-400 focus:outline-none text-purple-600 font-bold capitalize"
+            className="welcome-input"
             type="text"
           />
-          <button className="bg-purple-400 text-purple-600 bg-opacity-50 py-2 rounded-lg font-bold capitalize text-base">
+          <button className="welcome-btn text-purple-600 bg-opacity-50">
             sign up
           </button>
         </form>

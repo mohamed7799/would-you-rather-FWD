@@ -1,10 +1,10 @@
-import user from "./navbar/user.jpg";
+import UserImage from "./userImage";
 const Poll = () => {
   return (
-    <li className="mb-4 shadow-lg rounded-md font-bold border py-2 px-6 text-center justify-between flex items-center gap-4 max-w-sm mx-auto">
+    <li className="mb-4 font-bold text-center justify-between flex items-center gap-4 max-w-sm card">
       <div>
         <h3>User 1 asks</h3>
-        <img className="w-24 h-24 rounded-full mt-2 border" src={user} alt="" />
+        <UserImage></UserImage>
       </div>
       <div>
         <h3>would you rather ?</h3>
