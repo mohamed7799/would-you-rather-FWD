@@ -1,7 +1,25 @@
 import NavbarItem from "./navbarItem";
 import { FaBars } from "react-icons/fa";
-import user from "../../user.jpg";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
 const Navbar = ({ setIsNavMenuOpen, selectedTab }) => {
+  //variables
+  let navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.value);
+
+  //function
+  const logoutUser = () => {
+    dispatch(logout(null));
+    navigate("/");
+  };
+
+  useEffect(() => console.log(user.name), []);
+
   return (
     <nav className="flex items-center justify-between p-4 max-w-7xl mx-auto">
       <FaBars
@@ -16,9 +34,15 @@ const Navbar = ({ setIsNavMenuOpen, selectedTab }) => {
         <NavbarItem selectedTab={selectedTab}>LeaderBoard</NavbarItem>
       </ul>
       <div className="flex items-center gap-2">
-        <h3 className="text-purple-400">UserName</h3>
-        <img className="w-10 h-10 rounded-full mt-2 border" src={user} alt="" />
-        <h3 className="text-purple-400 cursor-pointer">logout</h3>
+        <h3 className="text-purple-400">{user.name}</h3>
+        <img
+          className="w-10 h-10 rounded-full mt-2 border"
+          src={user.avatarURL}
+          alt=""
+        />
+        <button onClick={logoutUser} className="text-purple-400 cursor-pointer">
+          logout
+        </button>
       </div>
     </nav>
   );

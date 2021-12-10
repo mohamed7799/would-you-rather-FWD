@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Poll from "./poll";
 
 const Home = () => {
+  //variables
+  let navigate = useNavigate();
+  const user = useSelector((state) => state.user.value);
   const [selectedFilter, setSelectedFilter] = useState("answered polls");
+
+  //functions
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, user);
 
   return (
     <section>
