@@ -14,7 +14,7 @@ const Home = () => {
     if (!user) {
       navigate("/");
     }
-  }, user);
+  }, [user]);
 
   return (
     <section>

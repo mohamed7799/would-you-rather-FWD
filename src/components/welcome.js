@@ -15,11 +15,7 @@ const Welcome = () => {
     if (selectedUser === "select user") {
       alert("please select a user");
     } else {
-      let temp = Object.entries(users).filter(
-        ([_, value]) => value.name === selectedUser
-      );
-
-      dispatch(login(temp[0][1]));
+      dispatch(login(users.filter((user) => user.name === selectedUser)[0]));
       navigate("/home");
     }
   };
@@ -43,9 +39,9 @@ const Welcome = () => {
               onChange={(e) => setSelectedUser(e.target.value)}
             >
               <option value="select user">select user</option>
-              {Object.entries(users).map(([key, value]) => (
-                <option value={value.name} key={value.id}>
-                  {value.name}
+              {users.map((user) => (
+                <option value={user.name} key={user.id}>
+                  {user.name}
                 </option>
               ))}
             </select>
