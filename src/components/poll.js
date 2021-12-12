@@ -1,10 +1,10 @@
 import UserImage from "./userImage";
-const Poll = () => {
+const Poll = ({ user }) => {
   return (
     <li className="mb-4 font-bold text-center justify-between flex items-center gap-4 max-w-sm card">
       <div>
-        <h3>User 1 asks</h3>
-        <UserImage></UserImage>
+        <h3>{user.name} asks</h3>
+        <UserImage avatar={user.avatarURL}></UserImage>
       </div>
       <div>
         <h3>would you rather ?</h3>

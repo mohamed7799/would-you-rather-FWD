@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../features/usersSlice";
 import { login } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { getQuestions } from "../features/questionsSlice";
 const Welcome = () => {
   //variables
   let navigate = useNavigate();
@@ -16,11 +17,15 @@ const Welcome = () => {
       alert("please select a user");
     } else {
       dispatch(login(users.filter((user) => user.name === selectedUser)[0]));
+
       navigate("/home");
     }
   };
 
-  useEffect(() => dispatch(getUsers()), []);
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getQuestions());
+  }, []);
 
   return (
     users && (
