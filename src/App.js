@@ -61,7 +61,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/questions"
+          path="/questions/:id"
           element={
             <>
               <Navbar
@@ -75,6 +75,7 @@ const App = () => {
             </>
           }
         ></Route>
+        <Route path="*" element={<Welcome />} />
       </Routes>
     </main>
   );

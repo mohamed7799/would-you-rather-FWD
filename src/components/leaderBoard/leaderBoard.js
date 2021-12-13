@@ -16,24 +16,26 @@ const LeaderBoard = () => {
   }, [user]);
 
   return (
-    <section className="w-11/12 max-w-lg mt-6 mx-auto">
-      <h1 className="text-center text-purple-400 text-xl font-bold">
-        LeaderBoard
-      </h1>
-      <ul className="mt-4">
-        {users
-          .slice()
-          .sort((a, b) => {
-            let A_score = a.questions.length + Object.keys(a.answers).length;
-            let B_score = b.questions.length + Object.keys(b.answers).length;
+    user && (
+      <section className="w-11/12 max-w-lg mt-6 mx-auto">
+        <h1 className="text-center text-purple-400 text-xl font-bold">
+          LeaderBoard
+        </h1>
+        <ul className="mt-4">
+          {users
+            .slice()
+            .sort((a, b) => {
+              let A_score = a.questions.length + Object.keys(a.answers).length;
+              let B_score = b.questions.length + Object.keys(b.answers).length;
 
-            return B_score - A_score;
-          })
-          .map((user) => (
-            <LeaderBoardUser user={user}></LeaderBoardUser>
-          ))}
-      </ul>
-    </section>
+              return B_score - A_score;
+            })
+            .map((user) => (
+              <LeaderBoardUser key={user.id} user={user}></LeaderBoardUser>
+            ))}
+        </ul>
+      </section>
+    )
   );
 };
 

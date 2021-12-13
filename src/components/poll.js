@@ -1,5 +1,10 @@
+import { Link } from "react-router-dom";
 import UserImage from "./userImage";
-const Poll = ({ user }) => {
+import { useDispatch } from "react-redux";
+import { view } from "../features/questionSlice";
+const Poll = ({ user, question }) => {
+  const dispatch = useDispatch();
+
   return (
     <li className="mb-4 font-bold text-center justify-between flex items-center gap-4 max-w-sm card">
       <div>
@@ -8,7 +13,14 @@ const Poll = ({ user }) => {
       </div>
       <div>
         <h3>would you rather ?</h3>
-        <button className="text-purple-400 underline mt-2">view poll</button>
+        <Link
+          to={`/questions/${question.id}`}
+          onClick={() => {
+            dispatch(view(question));
+          }}
+        >
+          <button className="text-purple-400 underline mt-2">view poll</button>
+        </Link>
       </div>
     </li>
   );

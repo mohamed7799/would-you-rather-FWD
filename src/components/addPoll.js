@@ -1,4 +1,18 @@
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const AddPoll = () => {
+  let navigate = useNavigate();
+
+  const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <section className="w-11/12 mt-6 max-w-md card">
       <h2 className="my-4 text-purple-400 text-xl capitalize font-bold">
