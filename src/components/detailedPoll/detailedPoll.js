@@ -2,27 +2,22 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  chooseAnswer,
-  setIsAnswered,
-  view,
-} from "../../features/questionSlice";
+import { view } from "../../features/questionSlice";
 import { answereQuestion } from "../../features/questionsSlice";
 import UserImage from "../userImage";
 import Option from "./option";
 const DetailedPoll = () => {
+  //variables
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions.value);
   const question = useSelector((state) => state.question.value);
   const users = useSelector((state) => state.users.value);
   const user = useSelector((state) => state.user.value);
-
-  const selectedAnswer = useSelector((state) => state.question.selectedAnswer);
-
+  const [selectedAnswer, setSelectedAnswer] = useState(true);
   const [selectedUser, setSelectedUser] = useState(true);
 
+  //functions
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -64,7 +59,7 @@ const DetailedPoll = () => {
               name="answer"
               value="optionOne"
               onClick={(e) => {
-                dispatch(chooseAnswer(e.target.value));
+                setSelectedAnswer(e.target.value);
               }}
             />
             <label htmlFor="optionA">{question.optionOne.text}</label>
@@ -77,14 +72,20 @@ const DetailedPoll = () => {
               name="answer"
               value="optionTwo"
               onClick={(e) => {
-                dispatch(chooseAnswer(e.target.value));
+                setSelectedAnswer(e.target.value);
               }}
             />
             <label htmlFor="optionB">{question.optionTwo.text}</label>
           </div>
           <button
             onClick={() => {
-              dispatch(answereQuestion());
+              dispatch(
+                answereQuestion({
+                  authedUser: user.id,
+                  qid: question.id,
+                  answer: selectedAnswer,
+                })
+              );
             }}
             className="border rounded-md w-full bg-purple-400 text-white font-bold capitalize py-2 mt-4"
             type="submit"
@@ -106,7 +107,7 @@ const DetailedPoll = () => {
             allVotes={
               question.optionOne.votes.length + question.optionTwo.votes.length
             }
-            selected={selectedAnswer === "optionOne" ? true : false}
+            selected={question.optionOne.votes.includes(user.id) ? true : false}
             option={question.optionOne.text}
           ></Option>
           <br />
@@ -115,7 +116,7 @@ const DetailedPoll = () => {
             allVotes={
               question.optionOne.votes.length + question.optionTwo.votes.length
             }
-            selected={selectedAnswer === "optionTwo" ? true : false}
+            selected={question.optionTwo.votes.includes(user.id) ? true : false}
             option={question.optionTwo.text}
           ></Option>
         </div>

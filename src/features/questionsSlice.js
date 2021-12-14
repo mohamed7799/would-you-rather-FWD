@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { _getQuestions, _saveQuestionAnswer } from "../back-end/_DATA";
+
+import {
+  _getQuestions,
+  _saveQuestion,
+  _saveQuestionAnswer,
+} from "../back-end/_DATA";
 import { getUsers } from "./usersSlice";
 
 export const getQuestions = createAsyncThunk(
@@ -10,19 +15,14 @@ export const getQuestions = createAsyncThunk(
   }
 );
 
-export const answereQuestion = createAsyncThunk(
-  "Questions/answereQuestion",
-  async (payload, { dispatch, getState }) => {
+export const saveQuestion = createAsyncThunk(
+  "Questions/saveQuestion",
+  async (payload, { dispatch }) => {
     try {
-      const state = getState();
-      let res = await _saveQuestionAnswer({
-        authedUser: state.user.value.id,
-        qid: state.question.value.id,
-        answer: state.question.selectedAnswer,
-      });
-
-      dispatch(getUsers());
-      dispatch(getQuestions());
+      let res = await _saveQuestion(payload);
+      dispatch(getUsers())
+        .then(() => dispatch(getQuestions()))
+        .then(() => dispatch(setAdded(true)));
 
       return res;
     } catch (error) {
@@ -31,18 +31,38 @@ export const answereQuestion = createAsyncThunk(
   }
 );
 
-const initialState = { value: null };
+export const answereQuestion = createAsyncThunk(
+  "Questions/answereQuestion",
+  async (payload, { dispatch, getState }) => {
+    try {
+      let res = await _saveQuestionAnswer(payload);
+
+      dispatch(getUsers()).then(() => dispatch(getQuestions()));
+
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+const initialState = { value: null, added: false };
 
 export const questionsSlice = createSlice({
   name: "questions",
   initialState,
-  reducers: {},
+  reducers: {
+    setAdded: (state, action) => {
+      state.added = action.payload;
+    },
+  },
   extraReducers: {
     [getQuestions.fulfilled]: (state, action) => {
       state.value = Object.values(action.payload);
     },
-    [answereQuestion.fulfilled]: () => {},
   },
 });
+
+export const { setAdded } = questionsSlice.actions;
 
 export default questionsSlice.reducer;
