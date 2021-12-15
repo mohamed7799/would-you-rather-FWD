@@ -18,8 +18,11 @@ const Welcome = () => {
       alert("please select a user");
     } else {
       dispatch(login(users.filter((user) => user.name === selectedUser)[0]));
-
-      navigate("/home");
+      if (window.history.state.idx === 0) {
+        navigate("/home");
+      } else {
+        navigate(-1);
+      }
     }
   };
 
